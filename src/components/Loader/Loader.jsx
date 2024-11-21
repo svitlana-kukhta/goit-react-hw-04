@@ -1,7 +1,8 @@
 import { ColorRing } from 'react-loader-spinner';
+import css from './Loader.module.css';
 const Loader = () => {
   return (
-    <div><ColorRing
+    <div className={css.loader}><ColorRing
   visible={true}
   height="80"
   width="80"
