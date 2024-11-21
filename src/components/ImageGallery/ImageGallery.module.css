@@ -1,0 +1,9 @@
+ul {list-style-type: none;
+    padding-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;}
+
+li {width: calc((100% - 3 * 20px) / 4);
+    margin-bottom: 20px;}
+
