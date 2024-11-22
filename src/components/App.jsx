@@ -5,25 +5,11 @@ import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import Loader from "./Loader/Loader";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import SearchBar from "./SearchBar/SearchBar";
-import Modal from 'react-modal';
+import ImageModal from "./ImageModal/ImageModal";
+
 import { fetchPhotos } from "../photos-api";
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    background: 'none',
-    border: 'none',
-  },
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
-  },
-};
-Modal.setAppElement('#root');
+
 
 
 export default function App() {
@@ -83,20 +69,8 @@ export default function App() {
       {photos.length > 0 && <ImageGallery photos={photos} onPhotoClick={openModal} />}
       {total_pages > page && <LoadMoreBtn handleLoadMore={handleLoadMore} />}
       {isError && query.trim() !== '' && photos.length === 0 && <ErrorMessage />}
-      
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Image Modal">
-
-        {selectedImage && (
-          <div onClick={closeModal}>
-            <img src={selectedImage.url} alt={selectedImage.alt} style={{ width: '100%' }} />
-          </div>
-        )}
-      
-      </Modal>
+      <ImageModal selectedImage={selectedImage} closeModal={closeModal} modalIsOpen={modalIsOpen}   />
+     
     </div>
   );
 };
